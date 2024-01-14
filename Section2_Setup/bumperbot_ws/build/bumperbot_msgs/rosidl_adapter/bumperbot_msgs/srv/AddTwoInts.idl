@@ -1,0 +1,21 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from bumperbot_msgs/srv/AddTwoInts.srv
+// generated code does not contain a copyright notice
+
+
+module bumperbot_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "Request")
+    struct AddTwoInts_Request {
+      int64 a;
+
+      int64 b;
+    };
+    @verbatim (language="comment", text=
+      "Response")
+    struct AddTwoInts_Response {
+      int64 sum;
+    };
+  };
+};

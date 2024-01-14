@@ -1,0 +1,24 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from bumperbot_msgs/srv/GetTransform.srv
+// generated code does not contain a copyright notice
+
+#include "geometry_msgs/msg/TransformStamped.idl"
+
+module bumperbot_msgs {
+  module srv {
+    @verbatim (language="comment", text=
+      "Request ")
+    struct GetTransform_Request {
+      string frame_id;
+
+      string child_frame_id;
+    };
+    @verbatim (language="comment", text=
+      "Response")
+    struct GetTransform_Response {
+      geometry_msgs::msg::TransformStamped transform;
+
+      boolean success;
+    };
+  };
+};

@@ -1,0 +1,8 @@
+source;share/bumperbot_bringup/hook/cmake_prefix_path.ps1
+source;share/bumperbot_bringup/hook/cmake_prefix_path.dsv
+source;share/bumperbot_bringup/hook/cmake_prefix_path.sh
+source;share/bumperbot_bringup/local_setup.bash
+source;share/bumperbot_bringup/local_setup.dsv
+source;share/bumperbot_bringup/local_setup.ps1
+source;share/bumperbot_bringup/local_setup.sh
+source;share/bumperbot_bringup/local_setup.zsh
