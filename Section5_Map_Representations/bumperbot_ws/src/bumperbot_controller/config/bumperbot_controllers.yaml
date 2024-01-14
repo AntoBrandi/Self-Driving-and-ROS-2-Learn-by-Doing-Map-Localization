@@ -31,7 +31,7 @@ bumperbot_controller:
     right_wheel_radius_multiplier: 1.0
 
     # Velocity commands timeout [s], default 0.5
-    cmd_vel_timeout: 0.5
+    cmd_vel_timeout: 0.2
 
     # Base frame_id
     base_frame_id: base_footprint #default: base_link
