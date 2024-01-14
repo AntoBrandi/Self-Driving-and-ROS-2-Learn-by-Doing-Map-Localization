@@ -21,7 +21,7 @@ SimpleController::SimpleController(const std::string& name)
     RCLCPP_INFO_STREAM(get_logger(), "Using wheel radius " << wheel_radius_);
     RCLCPP_INFO_STREAM(get_logger(), "Using wheel separation " << wheel_separation_);
     wheel_cmd_pub_ = create_publisher<std_msgs::msg::Float64MultiArray>("/simple_velocity_controller/commands", 10);
-    vel_sub_ = create_subscription<geometry_msgs::msg::TwistStamped>("/bumperbot_controller/cmd_vel", 10, std::bind(&SimpleController::velCallback, this, _1));
+    vel_sub_ = create_subscription<geometry_msgs::msg::Twist>("/bumperbot_controller/cmd_vel_unstamped", 10, std::bind(&SimpleController::velCallback, this, _1));
     joint_sub_ = create_subscription<sensor_msgs::msg::JointState>("/joint_states", 10, std::bind(&SimpleController::jointCallback, this, _1));
     odom_pub_ = create_publisher<nav_msgs::msg::Odometry>("/bumperbot_controller/odom", 10);
 
@@ -44,11 +44,11 @@ SimpleController::SimpleController(const std::string& name)
 }
 
 
-void SimpleController::velCallback(const geometry_msgs::msg::TwistStamped &msg)
+void SimpleController::velCallback(const geometry_msgs::msg::Twist &msg)
 {
     // Implements the differential kinematic model
     // Given v and w, calculate the velocities of the wheels
-    Eigen::Vector2d robot_speed(msg.twist.linear.x, msg.twist.angular.z);
+    Eigen::Vector2d robot_speed(msg.linear.x, msg.angular.z);
     Eigen::Vector2d wheel_speed = speed_conversion_.inverse() * robot_speed;
     std_msgs::msg::Float64MultiArray wheel_speed_msg;
     wheel_speed_msg.data.push_back(wheel_speed.coeff(1));

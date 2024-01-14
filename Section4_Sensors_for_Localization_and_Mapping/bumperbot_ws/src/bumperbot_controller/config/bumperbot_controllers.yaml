@@ -15,7 +15,7 @@ controller_manager:
 bumperbot_controller:
   ros__parameters:
     type        : diff_drive_controller/DiffDriveController
-    use_stamped_vel: true
+    use_stamped_vel: false
     left_wheel_names  : ['wheel_left_joint']
     right_wheel_names : ['wheel_right_joint']
 
