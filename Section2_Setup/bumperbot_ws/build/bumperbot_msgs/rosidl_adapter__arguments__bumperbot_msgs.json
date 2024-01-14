@@ -1,7 +1,0 @@
-{
-  "package_name": "bumperbot_msgs",
-  "non_idl_tuples": [
-    "/home/alien/Self-Driving-and-ROS-2-Learn-by-Doing-Map-Localization/Section2_Setup/bumperbot_ws/src/bumperbot_msgs:srv/AddTwoInts.srv",
-    "/home/alien/Self-Driving-and-ROS-2-Learn-by-Doing-Map-Localization/Section2_Setup/bumperbot_ws/src/bumperbot_msgs:srv/GetTransform.srv"
-  ]
-}

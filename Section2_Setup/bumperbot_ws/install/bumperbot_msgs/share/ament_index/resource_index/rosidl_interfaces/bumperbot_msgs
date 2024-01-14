@@ -1,8 +1,0 @@
-srv/AddTwoInts.idl
-srv/AddTwoInts.srv
-srv/AddTwoInts_Request.msg
-srv/AddTwoInts_Response.msg
-srv/GetTransform.idl
-srv/GetTransform.srv
-srv/GetTransform_Request.msg
-srv/GetTransform_Response.msg
