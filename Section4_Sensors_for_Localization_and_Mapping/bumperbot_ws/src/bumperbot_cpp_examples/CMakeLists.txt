@@ -7,6 +7,8 @@ endif()
 
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclcpp_action REQUIRED)
+find_package(rclcpp_components REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(rcl_interfaces REQUIRED)
 find_package(turtlesim REQUIRED)
@@ -42,6 +44,38 @@ ament_target_dependencies(simple_tf_kinematics rclcpp bumperbot_msgs geometry_ms
 add_executable(simple_lifecycle_node src/simple_lifecycle_node.cpp)
 ament_target_dependencies(simple_lifecycle_node rclcpp rclcpp_lifecycle std_msgs)
 
+add_library(simple_action_server SHARED src/simple_action_server.cpp)
+target_include_directories(simple_action_server PRIVATE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+target_compile_definitions(simple_action_server
+  PRIVATE "SIMPLE_ACTION_SERVER_CPP_BUILDING_DLL")
+ament_target_dependencies(simple_action_server
+  "bumperbot_msgs"
+  "rclcpp"
+  "rclcpp_action"
+  "rclcpp_components")
+rclcpp_components_register_node(simple_action_server 
+  PLUGIN "bumperbot_cpp_examples::SimpleActionServer" 
+  EXECUTABLE simple_action_server_node
+)
+
+add_library(simple_action_client SHARED src/simple_action_client.cpp)
+target_include_directories(simple_action_client PRIVATE
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+  $<INSTALL_INTERFACE:include>)
+target_compile_definitions(simple_action_client
+  PRIVATE "SIMPLE_ACTION_CLIENT_CPP_BUILDING_DLL")
+ament_target_dependencies(simple_action_client
+  "bumperbot_msgs"
+  "rclcpp"
+  "rclcpp_action"
+  "rclcpp_components")
+rclcpp_components_register_node(simple_action_client 
+  PLUGIN "bumperbot_cpp_examples::SimpleActionClient" 
+  EXECUTABLE simple_action_client_node
+)
+
 install(
   DIRECTORY include
   DESTINATION include
@@ -57,6 +91,14 @@ install(TARGETS
   simple_tf_kinematics
   simple_lifecycle_node
   DESTINATION lib/${PROJECT_NAME}
+)
+
+install(TARGETS
+  simple_action_server
+  simple_action_client
+  ARCHIVE DESTINATION lib
+  LIBRARY DESTINATION lib
+  RUNTIME DESTINATION bin
 )
 
 ament_package()

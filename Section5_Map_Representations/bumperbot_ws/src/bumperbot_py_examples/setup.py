@@ -27,6 +27,8 @@ setup(
             'simple_service_server = bumperbot_py_examples.simple_service_server:main',
             'simple_service_client = bumperbot_py_examples.simple_service_client:main',
             'simple_tf_kinematics = bumperbot_py_examples.simple_tf_kinematics:main',
+            'simple_action_server = bumperbot_py_examples.simple_action_server:main',
+            'simple_action_client = bumperbot_py_examples.simple_action_client:main',
             'simple_lifecycle_node = bumperbot_py_examples.simple_lifecycle_node:main',
             'simple_qos_publisher = bumperbot_py_examples.simple_qos_publisher:main',
             'simple_qos_subscriber = bumperbot_py_examples.simple_qos_subscriber:main',
