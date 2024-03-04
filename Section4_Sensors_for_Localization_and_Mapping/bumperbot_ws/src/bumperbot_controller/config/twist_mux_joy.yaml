@@ -8,4 +8,4 @@ joystick_relay:
       linear_backward_max : 0.7
       angular_min : 0.7
       angular_max : 5.0
-      steps       : 4
+      steps       : 3

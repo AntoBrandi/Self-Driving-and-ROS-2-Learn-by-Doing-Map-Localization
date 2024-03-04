@@ -21,6 +21,7 @@
 
   <!-- Wheels -->
   <gazebo reference="wheel_left_link">
+    <material>Gazebo/Blue</material>
     <mu1>1000000000000000.0</mu1>
     <mu2>1000000000000000.0</mu2>
     <kp>1000000000000.0</kp>
@@ -31,6 +32,7 @@
   </gazebo>
 
   <gazebo reference="wheel_right_link">
+    <material>Gazebo/Blue</material>
     <mu1>1000000000000000.0</mu1>
     <mu2>1000000000000000.0</mu2>
     <kp>1000000000000.0</kp>
@@ -42,6 +44,7 @@
     
   <!-- Caster Wheels -->
   <gazebo reference="caster_rear_link">
+    <material>Gazebo/FlatBlack</material>
     <mu1>0.1</mu1>
     <mu2>0.1</mu2>
     <kp>1000000.0</kp>
@@ -51,12 +54,21 @@
   </gazebo>
     
   <gazebo reference="caster_front_link">
+    <material>Gazebo/FlatBlack</material>
     <mu1>0.1</mu1>
     <mu2>0.1</mu2>
     <kp>1000000.0</kp>
     <kd>100.0</kd>
     <minDepth>0.001</minDepth>
     <maxVel>1.0</maxVel>
+  </gazebo>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>
+
+  <gazebo reference="laser_link">
+    <material>Gazebo/FlatBlack</material>
   </gazebo>
 
   <!-- ROS 2 Control -->
