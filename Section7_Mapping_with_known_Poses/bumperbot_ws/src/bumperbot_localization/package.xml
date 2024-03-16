@@ -18,6 +18,7 @@
   <depend>tf2</depend>
 
   <exec_depend>robot_localization</exec_depend>
+  <exec_depend>nav2_amcl</exec_depend>
   <exec_depend>nav2_map_server</exec_depend>
   <exec_depend>nav2_lifecycle_manager</exec_depend>
   <exec_depend>tf_transformations</exec_depend>
