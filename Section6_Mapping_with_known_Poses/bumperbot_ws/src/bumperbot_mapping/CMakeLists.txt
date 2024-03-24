@@ -6,7 +6,9 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclpy REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
@@ -17,6 +19,8 @@ include_directories(include)
 
 add_executable(mapping_with_known_poses src/mapping_with_known_poses.cpp)
 ament_target_dependencies(mapping_with_known_poses rclcpp sensor_msgs tf2_ros nav_msgs geometry_msgs tf2)
+
+ament_python_install_package(${PROJECT_NAME})
 
 install(
   DIRECTORY include
@@ -31,6 +35,11 @@ install(TARGETS
 install(
   DIRECTORY maps
   DESTINATION share/${PROJECT_NAME}
+)
+
+install(PROGRAMS
+  ${PROJECT_NAME}/mapping_with_known_poses.py
+  DESTINATION lib/${PROJECT_NAME}
 )
 
 ament_package()
