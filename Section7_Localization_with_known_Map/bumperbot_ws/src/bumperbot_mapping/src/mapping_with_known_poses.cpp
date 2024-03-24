@@ -35,8 +35,9 @@ Pose coordinatesToPose(const double px, const double py, const nav_msgs::msg::Ma
 
 bool poseOnMap(const Pose & pose, const nav_msgs::msg::MapMetaData & map_info)
 {
-    return pose.x < map_info.width  && pose.x >= 0 &&
-           pose.y < map_info.height && pose.y >= 0;
+    
+    return pose.x < static_cast<int>(map_info.width)  && pose.x >= 0 &&
+           pose.y < static_cast<int>(map_info.height) && pose.y >= 0;
 }
 
 std::vector<Pose> bresenham(const Pose & start, const Pose & end)
@@ -123,7 +124,7 @@ MappingWithKnownPoses::MappingWithKnownPoses(const std::string &name)
     map_.header.frame_id = "odom";
 
     // Init map with prior probability
-    map_.data = std::vector<int8_t>(map_.info.height * map_.info.width);
+    map_.data = std::vector<int8_t>(map_.info.height * map_.info.width, -1);
     probability_map_ = std::vector<double>(map_.info.height * map_.info.width, prob2logodds(PRIOR_PROB));
 
     tf_buffer_ = std::make_unique<tf2_ros::Buffer>(this->get_clock());
