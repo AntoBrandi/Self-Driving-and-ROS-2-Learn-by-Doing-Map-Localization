@@ -8,57 +8,45 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 
 def generate_launch_description():
 
-    map_name = LaunchConfiguration("map_name")
     use_sim_time = LaunchConfiguration("use_sim_time")
-    amcl_config = LaunchConfiguration("amcl_config")
-    lifecycle_nodes = ["map_server", "amcl"]
-
-    map_name_arg = DeclareLaunchArgument(
-        "map_name",
-        default_value="small_house"
-    )
+    slam_config = LaunchConfiguration("slam_config")
+    lifecycle_nodes = ["map_saver_server"]
 
     use_sim_time_arg = DeclareLaunchArgument(
         "use_sim_time",
         default_value="true"
     )
 
-    amcl_config_arg = DeclareLaunchArgument(
-        "amcl_config",
+    slam_config_arg = DeclareLaunchArgument(
+        "slam_config",
         default_value=os.path.join(
-            get_package_share_directory("bumperbot_localization"),
+            get_package_share_directory("bumperbot_mapping"),
             "config",
-            "amcl.yaml"
+            "slam_toolbox.yaml"
         ),
-        description="Full path to amcl yaml file to load"
+        description="Full path to slam yaml file to load"
     )
-
-    map_path = PathJoinSubstitution([
-        get_package_share_directory("bumperbot_mapping"),
-        "maps",
-        map_name,
-        "map.yaml"
-    ])
     
-    nav2_map_server = Node(
+    nav2_map_saver = Node(
         package="nav2_map_server",
-        executable="map_server",
-        name="map_server",
+        executable="map_saver_server",
+        name="map_saver_server",
         output="screen",
         parameters=[
-            {"yaml_filename": map_path},
-            {"use_sim_time": use_sim_time}
+            {"save_map_timeout": 5.0},
+            {"use_sim_time": use_sim_time},
+            {"free_thresh_default", "0.196"},
+            {"occupied_thresh_default", "0.65"},
         ],
     )
 
-    nav2_amcl = Node(
-        package="nav2_amcl",
-        executable="amcl",
-        name="amcl",
+    slam_toolbox = Node(
+        package="slam_toolbox",
+        executable="sync_slam_toolbox_node",
+        name="slam_toolbox",
         output="screen",
-        emulate_tty=True,
         parameters=[
-            amcl_config,
+            slam_config,
             {"use_sim_time": use_sim_time},
         ],
     )
@@ -76,10 +64,9 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        map_name_arg,
         use_sim_time_arg,
-        amcl_config_arg,
-        nav2_map_server,
-        nav2_amcl,
+        slam_config_arg,
+        nav2_map_saver,
+        slam_toolbox,
         nav2_lifecycle_manager,
     ])
