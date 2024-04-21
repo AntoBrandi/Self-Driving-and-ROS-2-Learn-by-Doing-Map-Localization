@@ -54,7 +54,7 @@ def generate_launch_description():
     nav2_lifecycle_manager = Node(
         package="nav2_lifecycle_manager",
         executable="lifecycle_manager",
-        name="lifecycle_manager_localization",
+        name="lifecycle_manager_slam",
         output="screen",
         parameters=[
             {"node_names": lifecycle_nodes},
