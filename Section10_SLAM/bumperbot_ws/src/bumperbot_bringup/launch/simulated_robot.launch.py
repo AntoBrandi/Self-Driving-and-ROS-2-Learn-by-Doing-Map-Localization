@@ -43,6 +43,12 @@ def generate_launch_description():
         ),
     )
 
+    safety_stop = Node(
+        package="bumperbot_utils",
+        executable="safety_stop",
+        output="screen",
+    )
+
     localization = IncludeLaunchDescription(
         os.path.join(
             get_package_share_directory("bumperbot_localization"),
@@ -94,6 +100,7 @@ def generate_launch_description():
         gazebo,
         controller,
         joystick,
+        safety_stop,
         localization,
         slam,
         rviz_localization,
