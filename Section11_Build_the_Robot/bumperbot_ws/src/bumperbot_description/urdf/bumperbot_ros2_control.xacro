@@ -14,7 +14,7 @@
         <xacro:unless value="$(arg is_sim)">
             <hardware>
                 <plugin>bumperbot_firmware/BumperbotInterface</plugin>
-                <param name="port">/dev/ttyUSB0</param>
+                <param name="port">/dev/arduino</param>
             </hardware>
         </xacro:unless>
         
