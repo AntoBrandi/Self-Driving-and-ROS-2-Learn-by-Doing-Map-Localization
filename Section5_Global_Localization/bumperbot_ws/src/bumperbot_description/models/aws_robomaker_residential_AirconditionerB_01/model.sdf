@@ -8,7 +8,7 @@
       <collision name="collision">
         <geometry>
           <mesh>
-            <uri>model://aws_robomaker_residential_AirconditionerB_01/meshes/aws_AirconditionerB_01_collision.DAE</uri>
+	  <uri>model://aws_robomaker_residential_AirconditionerB_01/meshes/aws_AirconditionerB_01_collision.DAE</uri>
             <scale>1 1 1</scale>
           </mesh>
         </geometry>

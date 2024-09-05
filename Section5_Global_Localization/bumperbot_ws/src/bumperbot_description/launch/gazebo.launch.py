@@ -1,4 +1,5 @@
 import os
+from os import pathsep
 from pathlib import Path
 from ament_index_python.packages import get_package_share_directory
 
@@ -14,10 +15,11 @@ from launch_ros.parameter_descriptions import ParameterValue
 def generate_launch_description():
     bumperbot_description = get_package_share_directory("bumperbot_description")
 
-    model_arg = DeclareLaunchArgument(name="model", default_value=os.path.join(
-                                        bumperbot_description, "urdf", "bumperbot.urdf.xacro"
-                                        ),
-                                      description="Absolute path to robot urdf file"
+    model_arg = DeclareLaunchArgument(
+        name="model", default_value=os.path.join(
+                bumperbot_description, "urdf", "bumperbot.urdf.xacro"
+            ),
+        description="Absolute path to robot urdf file"
     )
 
     world_name_arg = DeclareLaunchArgument(name="world_name", default_value="empty")
@@ -29,11 +31,12 @@ def generate_launch_description():
         ]
     )
 
+    model_path = str(Path(bumperbot_description).parent.resolve())
+    model_path += pathsep + os.path.join(get_package_share_directory("bumperbot_description"), 'models')
+
     gazebo_resource_path = SetEnvironmentVariable(
-        name="GZ_SIM_RESOURCE_PATH",
-        value=[
-            str(Path(bumperbot_description).parent.resolve())
-            ]
+        "GZ_SIM_RESOURCE_PATH",
+        model_path
         )
 
     ros_distro = os.environ["ROS_DISTRO"]
@@ -54,14 +57,12 @@ def generate_launch_description():
         parameters=[{"robot_description": robot_description}]
     )
 
-    # TODO: use world_path when launching Gazebo
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory("ros_gz_sim"), "launch"), "/gz_sim.launch.py"]),
-                launch_arguments=[
-                    ("gz_args", [" -v 4", " -r"]
-                    )
-                ]
+                launch_arguments={
+                    "gz_args": PythonExpression(["'", world_path, " -v 4 -r'"])
+                }.items()
              )
 
     gz_spawn_entity = Node(
