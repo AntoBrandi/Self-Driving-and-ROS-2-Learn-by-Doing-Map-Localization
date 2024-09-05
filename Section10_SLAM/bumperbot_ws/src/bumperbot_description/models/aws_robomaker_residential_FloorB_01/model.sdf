@@ -24,6 +24,7 @@
         </surface>
       </collision>
       
+      
       <visual name="visual">
 	    <geometry>
           <mesh>
