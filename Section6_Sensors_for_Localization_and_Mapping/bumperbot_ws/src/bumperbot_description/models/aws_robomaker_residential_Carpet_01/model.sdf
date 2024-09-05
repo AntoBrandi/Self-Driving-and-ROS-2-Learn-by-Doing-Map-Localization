@@ -16,7 +16,7 @@
           </mesh>
         </geometry>
 
-        <surface>        
+        <surface>
           <friction>
             <ode> 
               <mu>100</mu>
