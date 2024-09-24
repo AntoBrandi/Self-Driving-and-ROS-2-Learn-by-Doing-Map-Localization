@@ -29,6 +29,7 @@
       <geometry>
         <mesh filename="package://bumperbot_description/meshes/base_link.STL" />
       </geometry>
+      <material name="black"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -57,6 +58,7 @@
       <geometry>
         <mesh filename="package://bumperbot_description/meshes/wheel_right_link.STL" />
       </geometry>
+      <material name="blue"/>
     </visual>
     <collision>
       <origin xyz="0 -0.015 0" rpy="1.57 0 0" />
@@ -87,6 +89,7 @@
       <geometry>
         <mesh filename="package://bumperbot_description/meshes/wheel_left_link.STL" />
       </geometry>
+      <material name="blue"/>
     </visual>
     <collision>
       <origin xyz="0 0.015 0" rpy="-1.57 0 0" />
@@ -116,6 +119,7 @@
       <geometry>
         <mesh filename="package://bumperbot_description/meshes/caster_front_link.STL" />
       </geometry>
+      <material name="silver"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -145,6 +149,7 @@
       <geometry>
         <mesh filename="package://bumperbot_description/meshes/caster_rear_link.STL" />
       </geometry>
+      <material name="silver"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -174,9 +179,7 @@
       <geometry>
         <mesh filename="package://bumperbot_description/meshes/imu_link.STL" />
       </geometry>
-      <material name="">
-        <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
-      </material>
+      <material name="blue"/>
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
@@ -192,5 +195,18 @@
     <child link="imu_link" />
     <axis xyz="0 0 0" />
   </joint>
+
+  <material name="blue">
+    <color rgba="0 0 1 1"/>
+  </material>
+  <material name="black">
+    <color rgba="0 0 0 1"/>
+  </material>
+  <material name="silver">
+    <color rgba="0.79 0.82 0.93 1"/>
+  </material>
+  <material name="dark_grey">
+    <color rgba="0.3 0.3 0.3 1"/>
+  </material>
 
 </robot>
