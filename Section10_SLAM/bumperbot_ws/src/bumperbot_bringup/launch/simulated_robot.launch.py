@@ -41,6 +41,9 @@ def generate_launch_description():
             "launch",
             "joystick_teleop.launch.py"
         ),
+        launch_arguments={
+            "use_sim_time": "True"
+        }.items()
     )
 
     safety_stop = Node(
