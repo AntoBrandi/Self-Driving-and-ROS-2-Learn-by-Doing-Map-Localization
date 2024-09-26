@@ -3,7 +3,7 @@ joy_teleop:
     move:
       type: topic
       interface_type: geometry_msgs/msg/TwistStamped
-      topic_name: input_joy/cmd_vel
+      topic_name: input_joy/cmd_vel_stamped
       deadman_buttons: [5]
       axis_mappings:
         twist-linear-x:
@@ -12,5 +12,5 @@ joy_teleop:
           offset: 0.0
         twist-angular-z:
           axis: 3
-          scale: 8.0
+          scale: 1.0
           offset: 0.0
