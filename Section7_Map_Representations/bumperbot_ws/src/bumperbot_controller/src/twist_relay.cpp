@@ -27,7 +27,7 @@ private:
     void controller_twist_callback(const geometry_msgs::msg::Twist::SharedPtr msg)
     {
         geometry_msgs::msg::TwistStamped twist_stamped;
-        twist_stamped.header.stamp = this->now();
+        twist_stamped.header.stamp = get_clock()->now();
         twist_stamped.twist = *msg;
         controller_pub_->publish(twist_stamped);
     }
