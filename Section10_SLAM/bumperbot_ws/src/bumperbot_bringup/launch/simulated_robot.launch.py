@@ -50,6 +50,7 @@ def generate_launch_description():
         package="bumperbot_utils",
         executable="safety_stop",
         output="screen",
+        parameters=[{"use_sim_time": True}]
     )
 
     localization = IncludeLaunchDescription(

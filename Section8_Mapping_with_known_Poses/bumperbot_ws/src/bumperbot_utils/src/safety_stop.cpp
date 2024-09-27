@@ -2,6 +2,7 @@
 #include <memory>
 #include <chrono>
 #include <thread>
+#include <math.h>
 
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/laser_scan.hpp"
@@ -91,7 +92,7 @@ private:
     state_ = State::FREE;
     for (const auto &range : msg.ranges)
     {
-      if (range <= warning_distance_)
+      if (!std::isinf(range) && range <= warning_distance_)
       {
         state_ = State::WARNING;
         
