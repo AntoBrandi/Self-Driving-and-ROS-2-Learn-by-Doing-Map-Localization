@@ -1,5 +1,6 @@
 twist_mux:
   ros__parameters:
+    use_stamped: false
     topics:
       joystick:
         topic   : joy_vel
