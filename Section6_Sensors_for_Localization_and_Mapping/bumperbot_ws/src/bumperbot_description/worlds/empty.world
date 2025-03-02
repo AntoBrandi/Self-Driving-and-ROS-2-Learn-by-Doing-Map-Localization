@@ -1,6 +1,9 @@
 <?xml version="1.0" ?>
 <sdf version="1.7">
     <world name="empty_world">
+        <physics type="ode">
+            <max_step_size>0.01</max_step_size>
+        </physics>
         <light type="directional" name="sun">
             <cast_shadows>true</cast_shadows>
             <pose>0 0 10 0 0 0</pose>

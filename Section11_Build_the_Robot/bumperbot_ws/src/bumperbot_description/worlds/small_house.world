@@ -2,6 +2,9 @@
 
 <sdf version='1.6'>
   <world name='default'>
+        <physics type="ode">
+            <max_step_size>0.01</max_step_size>
+        </physics>
 
   <model name='AirconditionerA_01_001'>
         <static>true</static>
