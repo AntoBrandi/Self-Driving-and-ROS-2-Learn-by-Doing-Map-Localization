@@ -13,7 +13,8 @@ def generate_launch_description():
 
     ros_distro = os.environ["ROS_DISTRO"]
     lifecycle_nodes = ["map_saver_server"]
-    lifecycle_nodes.extend(["slam_toolbox"] if ros_distro == "humble" else [])
+    if ros_distro != "humble":
+        lifecycle_nodes.append("slam_toolbox")
 
     use_sim_time_arg = DeclareLaunchArgument(
         "use_sim_time",
